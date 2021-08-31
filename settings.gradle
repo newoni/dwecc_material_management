@@ -1,0 +1,2 @@
+rootProject.name = "dwecc_material_management"
+include ':app'
