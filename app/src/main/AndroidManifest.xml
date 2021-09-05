@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Dwecc_material_management">
+        <activity android:name=".BomCheckResult">
+        </activity>
         <activity android:name=".BomCheck">
         </activity>
         <activity android:name=".MainActivity">
