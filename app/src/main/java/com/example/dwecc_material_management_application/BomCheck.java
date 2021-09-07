@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class BomCheck extends AppCompatActivity {
 
     String searchResult;
+    static ArrayList<Product> resultArray;
     static Product product;
 
     @Override
@@ -77,7 +78,7 @@ public class BomCheck extends AppCompatActivity {
                 }
 
                 Log.i("searchResult",searchResult);
-                ArrayList<Product> resultArray = TransService.changeString2Product(searchResult);
+                resultArray = TransService.changeString2Product(searchResult);
 
                 Log.i("result with searchResult", "resultArray.toString() is");
                 for(int i=0; i<resultArray.size(); i++){
