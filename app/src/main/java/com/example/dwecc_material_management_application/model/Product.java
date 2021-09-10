@@ -3,7 +3,7 @@ package com.example.dwecc_material_management_application.model;
 import java.time.LocalDate;
 
 public class Product {
-    private String searchString;
+    private String searchString; //--check. BomSearchRequest class 도입으로 인해 필요없을 것으로 보임. <21.09.07>
     private int id;
     private int materialInfo;
     private String lot;
@@ -11,6 +11,8 @@ public class Product {
     private LocalDate expDate;
     private int quantity;
 
+//####s
+    //--check. BomSearchRequest class 도입으로 인해 필요없을 것으로 보임. <21.09.07>
     public String getSearchString() {
         return searchString;
     }
@@ -18,6 +20,7 @@ public class Product {
     public void setSearchString(String searchString) {
         this.searchString = searchString;
     }
+//####e
 
     public int getId() {
         return id;

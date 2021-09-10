@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.dwecc_material_management_application.model.BomSearchRequest;
 import com.example.dwecc_material_management_application.model.Product;
 import com.example.dwecc_material_management_application.service.PostService;
 import com.example.dwecc_material_management_application.service.TransService;
@@ -20,7 +21,8 @@ public class BomCheck extends AppCompatActivity {
 
     String searchResult;
     static ArrayList<Product> resultArray;
-    static Product product;
+//    static Product product;
+//    static BomSearchRequest bomSearchRequest = new BomSearchRequest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +50,15 @@ public class BomCheck extends AppCompatActivity {
 //                보낼 메세지 값 받아오기
                 String sendMessage = editText.getText().toString();
 
+                BomSearchRequest bomSearchRequest = new BomSearchRequest();
+                System.out.println("sendMessage: "+ sendMessage);
 //                전달 객체 product 생성 및 필드값 채우기
-                Product product = new Product();
-                product.setSearchString(sendMessage);
+//                product.setSearchString(sendMessage);
+                bomSearchRequest.setProduct(sendMessage);  //--check. new address test <21.09.07>
 
 //                URL 설정 --check. URL 설정 필요, POST 사용 가능한지 확인해보기
-                String URL = "http://192.168.7.245:8081/material/readAll";
-
-                System.out.println(URL);
+//                String URL = "http://192.168.7.245:8081/material/readAll";
+                String URL = "http://192.168.205.245:8081/bomSearch/product"; //--check. new address test <21.09.07>
 
 //                POST 함수 실행
 //                thread를 활용해서 실행(메인 스레드에서 실행 시 NetworkOnMainThreadException 발생
@@ -65,7 +68,9 @@ public class BomCheck extends AppCompatActivity {
                     @Override
                     public void run() {
                         super.run();
-                        searchResult = PostService.POST(URL, product);
+//                        searchResult = PostService.POST(URL, product);
+                        PostService postService = new PostService();
+                        searchResult = postService.POST(URL, bomSearchRequest);
                     }
                 };
 
