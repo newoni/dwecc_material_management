@@ -30,7 +30,7 @@ public class BomCheck extends AppCompatActivity {
         setContentView(R.layout.activity_bom_check);
 
 //      id값에 따른 component들을 변수로 생성
-        ImageButton button_back = (ImageButton) findViewById(R.id.bomCheck_start);
+        ImageButton button_back = (ImageButton) findViewById(R.id.backToMain);
         EditText editText = (EditText)findViewById(R.id.editText);
         Button searchButton = (Button)findViewById(R.id.search_button);
 
