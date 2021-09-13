@@ -2,6 +2,7 @@ package com.example.dwecc_material_management_application;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -55,10 +56,13 @@ public class BomCheckResult extends AppCompatActivity {
 //        ListView를 ArrayAdapter에 연결
         productListView.setAdapter(arryAdapter);
 
+//      source:  https://kitesoft.tistory.com/67
+//      ListView OnClick Listener 생성
         productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(BomCheckResult.this, productNameArraylist.get(position),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(BomCheckResult.this, BomCheckMaterialResult.class);
+                startActivity(intent);
             }
         });
     }

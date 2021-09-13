@@ -30,13 +30,13 @@ public class BomCheck extends AppCompatActivity {
         setContentView(R.layout.activity_bom_check);
 
 //      id값에 따른 component들을 변수로 생성
-        ImageButton button_back = (ImageButton) findViewById(R.id.backToMain);
+        ImageButton backButton = (ImageButton) findViewById(R.id.backToMain);
         EditText editText = (EditText)findViewById(R.id.editText);
         Button searchButton = (Button)findViewById(R.id.search_button);
 
 //      각 버튼에 onClick listener setting
 //      뒤로가기 버튼 onClick listener setting
-        button_back.setOnClickListener(new View.OnClickListener(){
+        backButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 finish(); //현재 activity 종료
@@ -57,7 +57,7 @@ public class BomCheck extends AppCompatActivity {
                 bomSearchRequest.setProduct(sendMessage);  //--check. new address test <21.09.07>
 
 //                URL 설정 --check. URL 설정 필요, POST 사용 가능한지 확인해보기
-                String URL = "http://192.168.205.245:8081/bomSearch/product"; //--check. new address test <21.09.07>
+                String URL = MainActivity.URL + "/bomSearch/product"; //--check. new address test <21.09.07>
 
 //                POST 함수 실행
 //                thread를 활용해서 실행(메인 스레드에서 실행 시 NetworkOnMainThreadException 발생

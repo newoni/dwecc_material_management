@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    static public String URL = "http://192.168.205.245:8081";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
