@@ -14,12 +14,13 @@ public class TransService {
         ArrayList<Product> result = new ArrayList<Product>();
 
         //최초 입력값 출력
-        Log.i("input_value_check",input);
+        Log.i("TransService, input_value_check",input);
+        System.out.println("TransService, input value is: " + input);
 
         //첫번째 중괄호 제거
         String input_substring = input.substring(1,input.lastIndexOf(']'));
 
-        System.out.println("input substringed reuslt");
+        System.out.println("TransService, input substringed reuslt");
         System.out.println(input_substring);
 
         Log.i("TransService","substringed input_array is");

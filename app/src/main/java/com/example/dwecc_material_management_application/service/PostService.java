@@ -36,14 +36,14 @@ public class PostService {
             // convert JSONObject to JSON to String
             json = jsonObject.toString();
 
-            System.out.println("json: " + json);
+            System.out.println("PostService, json: " + json);
 
             // ** Alternative way to convert Person object to JSON string usin Jackson Lib
             // ObjectMapper mapper = new ObjectMapper();
             // json = mapper.writeValueAsString(person);
 
             // Set some headers to inform server about the type of the content
-            Log.i("set_request_property", "setting request property");
+            Log.i("PostSerice, set_request_property", "setting request property");
             httpCon.setRequestProperty("Accept", "application/json");
             httpCon.setRequestProperty("Content-type", "application/json");
 
@@ -52,7 +52,7 @@ public class PostService {
             // InputStream으로 서버로 부터 응답을 받겠다는 옵션.
             httpCon.setDoInput(true);
 
-            Log.i("set_output_stream", "setting output stream");
+            Log.i("PostSerice,set_output_stream", "setting output stream");
             OutputStream os = httpCon.getOutputStream();
 
             //--check. 바로 윗줄에서 연결 문제 일어남.
@@ -84,11 +84,11 @@ public class PostService {
                 httpCon.disconnect();
             }
         }catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }catch (Exception e) {
             Log.i("trying2set_inputstream", "exception occured2");
 //            Log.d("InputStream", e.getLocalizedMessage());
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         Log.i("result", result); //결과 출력

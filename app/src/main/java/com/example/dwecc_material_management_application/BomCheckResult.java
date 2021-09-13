@@ -4,9 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class BomCheckResult extends AppCompatActivity {
+//  ListView 생성
+    private ListView productListView;
+
+//        arrayAdapt 생성
+    ArrayAdapter<String> arryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +34,31 @@ public class BomCheckResult extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish(); //현재 activity 종료
+            }
+        });
+
+//        ListView 객체를 ID를 기준으로 가져옴
+        productListView = (ListView) findViewById(R.id.productListView);
+
+//        arrayList 생성
+        ArrayList<String> productNameArraylist= new ArrayList<String>();
+
+//       BomCheck의 result Array 길이 만큼 ArrayList 를 String type으로 채웝줌
+        for(int i=0; i<BomCheck.resultArray.size();i++){
+            String str = BomCheck.resultArray.get(i).getProduct() + " " +BomCheck.resultArray.get(i).getModel() + " " +BomCheck.resultArray.get(i).getSpec();
+            productNameArraylist.add(str);
+        }
+
+//        //        arrayAdapt 객체 생성
+        arryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, productNameArraylist);
+//
+//        ListView를 ArrayAdapter에 연결
+        productListView.setAdapter(arryAdapter);
+
+        productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(BomCheckResult.this, productNameArraylist.get(position),Toast.LENGTH_LONG).show();
             }
         });
     }

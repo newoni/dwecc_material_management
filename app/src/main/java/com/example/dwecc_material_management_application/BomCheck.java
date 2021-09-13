@@ -51,14 +51,13 @@ public class BomCheck extends AppCompatActivity {
                 String sendMessage = editText.getText().toString();
 
                 BomSearchRequest bomSearchRequest = new BomSearchRequest();
-                System.out.println("sendMessage: "+ sendMessage);
+                System.out.println("BomCheck Class, sendMessage: "+ sendMessage);
 //                전달 객체 product 생성 및 필드값 채우기
 //                product.setSearchString(sendMessage);
                 bomSearchRequest.setProduct(sendMessage);  //--check. new address test <21.09.07>
 
 //                URL 설정 --check. URL 설정 필요, POST 사용 가능한지 확인해보기
-//                String URL = "http://192.168.7.245:8081/material/readAll";
-                String URL = "http://192.168.191.245:8081/bomSearch/product"; //--check. new address test <21.09.07>
+                String URL = "http://192.168.205.245:8081/bomSearch/product"; //--check. new address test <21.09.07>
 
 //                POST 함수 실행
 //                thread를 활용해서 실행(메인 스레드에서 실행 시 NetworkOnMainThreadException 발생
@@ -71,6 +70,7 @@ public class BomCheck extends AppCompatActivity {
 //                        searchResult = PostService.POST(URL, product);
                         PostService postService = new PostService();
                         searchResult = postService.POST(URL, bomSearchRequest);
+                        Log.i("BomSearch", "searchResult value is:" +searchResult);
                     }
                 };
 
@@ -82,10 +82,10 @@ public class BomCheck extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Log.i("searchResult",searchResult);
+                Log.i("BomCheck, searchResult",searchResult);
                 resultArray = TransService.changeString2Product(searchResult);
 
-                Log.i("result with searchResult", "resultArray.toString() is");
+                Log.i("BomCheck, result with searchResult", "resultArray.toString() is");
                 for(int i=0; i<resultArray.size(); i++){
                     System.out.println(resultArray.get(i));
                 }
