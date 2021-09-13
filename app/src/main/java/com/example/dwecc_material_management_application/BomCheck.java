@@ -67,7 +67,6 @@ public class BomCheck extends AppCompatActivity {
                     @Override
                     public void run() {
                         super.run();
-//                        searchResult = PostService.POST(URL, product);
                         PostService postService = new PostService();
                         searchResult = postService.POST(URL, bomSearchRequest);
                         Log.i("BomSearch", "searchResult value is:" +searchResult);

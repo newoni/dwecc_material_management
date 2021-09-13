@@ -16,14 +16,22 @@
         android:src="@drawable/arrow"
         android:scaleType="fitStart"
         />
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:layout_weight="9"
-        android:orientation="horizontal"
-        >
 
-    </GridLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal">
+        <ListView
+            android:id="@+id/materialName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ListView
+            android:id="@+id/materialCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

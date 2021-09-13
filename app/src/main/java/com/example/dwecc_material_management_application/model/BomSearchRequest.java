@@ -21,11 +21,11 @@ public class BomSearchRequest {
         this.model = model;
     }
 
-    public String getSepc() {
+    public String getSpec() {
         return spec;
     }
 
-    public void setSepc(String sepc) {
+    public void setSpec(String sepc) {
         this.spec = sepc;
     }
 }

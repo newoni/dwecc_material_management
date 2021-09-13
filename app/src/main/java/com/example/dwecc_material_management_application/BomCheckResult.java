@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +20,7 @@ public class BomCheckResult extends AppCompatActivity {
     private ListView productListView;
 
 //        arrayAdapt 생성
-    ArrayAdapter<String> arryAdapter;
+    ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +52,10 @@ public class BomCheckResult extends AppCompatActivity {
         }
 
 //        //        arrayAdapt 객체 생성
-        arryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, productNameArraylist);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, productNameArraylist);
 //
 //        ListView를 ArrayAdapter에 연결
-        productListView.setAdapter(arryAdapter);
+        productListView.setAdapter(arrayAdapter);
 
 //      source:  https://kitesoft.tistory.com/67
 //      ListView OnClick Listener 생성
@@ -62,6 +63,7 @@ public class BomCheckResult extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent(BomCheckResult.this, BomCheckMaterialResult.class);
+                intent.putExtra("name",arrayAdapter.getItem(position)); // 0 has no mean
                 startActivity(intent);
             }
         });
