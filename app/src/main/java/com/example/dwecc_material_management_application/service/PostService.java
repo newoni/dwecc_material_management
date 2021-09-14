@@ -17,7 +17,7 @@ public class PostService {
         public InputStream is = null;
         public String result = "";
 //    public static String POST(String url, Product product){
-    public String POST(String url, BomSearchRequest bomSearchRequest){ // --check. new class test <21.09.07>
+    public String post4bom(String url, BomSearchRequest bomSearchRequest){ // --check. new class test <21.09.07>
 
         try {
             URL urlCon = new URL(url);

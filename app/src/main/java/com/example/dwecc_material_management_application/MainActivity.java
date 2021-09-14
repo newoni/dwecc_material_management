@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 public class MainActivity extends AppCompatActivity {
-    static public String URL = "http://192.168.148.245:8081";
+    static public String URL = "http://192.168.205.245:8081";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
