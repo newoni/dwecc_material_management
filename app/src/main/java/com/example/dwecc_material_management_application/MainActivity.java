@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 public class MainActivity extends AppCompatActivity {
-    static public String URL = "http://192.168.41.245:8081";
+    static public String URL = "http://192.168.148.245:8081";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
             @Override // 부모 메소드 재정의
             public void onClick(View v) { // 클릭 이벤트 처리
                 Intent intent = new Intent(MainActivity.this, BomCheck.class);
+                startActivity(intent);
+            }
+        });
+
+        button_insertMaterial2DB.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRInsert.class);
                 startActivity(intent);
             }
         });
