@@ -7,6 +7,7 @@ import com.example.dwecc_material_management_application.model.Product;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TransService {
     public static ArrayList<Product> changeString2Product(String input){
@@ -58,4 +59,8 @@ public class TransService {
         }
         return result;
     }
+
+//    public static ArrayList<HashMap<String,String>> chagneString2Material(String input){
+//
+//    }
 }

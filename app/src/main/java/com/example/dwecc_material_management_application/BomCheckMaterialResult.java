@@ -19,7 +19,7 @@ public class BomCheckMaterialResult extends AppCompatActivity {
     String searchResult;
 
     //검색을 위한 객체 생성
-    BomSearchRequest bomSearchRequest;
+    BomSearchRequest bomSearchRequest = new BomSearchRequest();
 
     //  ListView 생성
     ListView materialNameListView;
@@ -51,10 +51,20 @@ public class BomCheckMaterialResult extends AppCompatActivity {
 
         String URL = MainActivity.URL + "/bomSearch/material";
 
+        Log.i("BomCheckMaterialResult, getIntent", ""+getIntent());
+        Log.i("BomCheckMaterialResult, getIntent.geStringExtra", ""+getIntent().getStringExtra("name"));
+        Log.i("BomCheckMaterialResult, getIntent.geStringExtra.split()[0]" , ""+getIntent().getStringExtra("name").split(" ")[0]);
+        Log.i("BomCheckMaterialResult, getIntent.geStringExtra.split()[1]" , ""+getIntent().getStringExtra("name").split(" ")[1]);
+        Log.i("BomCheckMaterialResult, getIntent.geStringExtra.split()[2]" , ""+getIntent().getStringExtra("name").split(" ")[2]);
+
         //검색용 product 객체 생성
         bomSearchRequest.setProduct(getIntent().getStringExtra("name").split(" ")[0]);
         bomSearchRequest.setModel(getIntent().getStringExtra("name").split(" ")[1]);
         bomSearchRequest.setSpec(getIntent().getStringExtra("name").split(" ")[2]);
+
+        Log.i("BomCheckMaterialResult, bomSearchRequest.getProduct()",bomSearchRequest.getProduct());
+        Log.i("BomCheckMaterialResult, bomSearchRequest.getModel()",bomSearchRequest.getModel());
+        Log.i("BomCheckMaterialResult, bomSearchRequest.getSpec()",bomSearchRequest.getSpec());
 
 //                POST 함수 실행
 //                thread를 활용해서 실행(메인 스레드에서 실행 시 NetworkOnMainThreadException 발생
@@ -79,5 +89,6 @@ public class BomCheckMaterialResult extends AppCompatActivity {
         }
 
         Log.i("BomCheck, searchResult",searchResult);
+
     }
 }

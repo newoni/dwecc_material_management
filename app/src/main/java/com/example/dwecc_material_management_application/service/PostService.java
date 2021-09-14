@@ -32,6 +32,9 @@ public class PostService {
             JSONObject jsonObject = new JSONObject();
 //            jsonObject.accumulate("search_string", product.getSearchString());
             jsonObject.accumulate("product", bomSearchRequest.getProduct()); //--check. new class test <21.09.07>
+            jsonObject.accumulate("model", bomSearchRequest.getModel()); //--check. new class test <21.09.07>
+            jsonObject.accumulate("spec", bomSearchRequest.getSpec()); //--check. new class test <21.09.07>
+
 
             // convert JSONObject to JSON to String
             json = jsonObject.toString();
