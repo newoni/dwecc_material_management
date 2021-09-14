@@ -60,7 +60,34 @@ public class TransService {
         return result;
     }
 
-//    public static ArrayList<HashMap<String,String>> chagneString2Material(String input){
-//
-//    }
+    public static ArrayList<HashMap<String,String>> chagneString2Material(String input){
+        String subStringedInput = input.substring(input.indexOf('['),input.lastIndexOf(']'));
+        String[] strings = subStringedInput.split("\\{");
+
+        //리턴을 위한 ArrayList 선언
+        ArrayList<HashMap<String,String>> resultArrayList = new ArrayList<HashMap<String, String>>();
+        for(int i=1; i<strings.length; i++){
+            String material = strings[i].substring(0,strings[i].lastIndexOf("}"));
+
+            //하나의 해쉬맵에 하나의 자재 정보 입력
+            HashMap<String, String> materialHashMap = new HashMap<String, String>();
+            Log.i("TransService, material ", material);
+
+            //자재 코드 정보 추출 및 저장
+            String materialCode = material.split(",")[1].split(":")[1];
+            Log.i("TransService, materialCode ", materialCode);
+            materialHashMap.put("code",materialCode.substring(materialCode.indexOf('"')+1,materialCode.lastIndexOf('"')));
+
+            //자재명 정보 추출 및 저장
+            String materialName = material.split(",")[2].split(":")[1];
+            Log.i("TransService, materialName ", materialName);
+            materialHashMap.put("name",materialName.substring(materialName.indexOf('"')+1,materialName.lastIndexOf('"')));
+
+            Log.i("transService, materialHashMap.get(name)",materialHashMap.get("name"));
+            Log.i("transService, materialHashMap.get(code)",materialHashMap.get("code"));
+
+            resultArrayList.add(materialHashMap);
+        }
+        return resultArrayList;
+    }
 }

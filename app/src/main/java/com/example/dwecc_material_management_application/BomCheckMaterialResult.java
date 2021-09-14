@@ -12,6 +12,10 @@ import android.widget.ListView;
 import com.example.dwecc_material_management_application.model.BomSearchRequest;
 import com.example.dwecc_material_management_application.model.Product;
 import com.example.dwecc_material_management_application.service.PostService;
+import com.example.dwecc_material_management_application.service.TransService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BomCheckMaterialResult extends AppCompatActivity {
 
@@ -89,6 +93,20 @@ public class BomCheckMaterialResult extends AppCompatActivity {
         }
 
         Log.i("BomCheck, searchResult",searchResult);
+        ArrayList<HashMap<String,String>> resultArraylist = TransService.chagneString2Material(searchResult);
 
+        ArrayList<String> materialNameArrayList = new ArrayList<String>();
+        ArrayList<String> materialCodeArrayList = new ArrayList<String>();
+
+        for(int i=0; i< resultArraylist.size(); i++){
+            materialNameArrayList.add(resultArraylist.get(i).get("name"));
+            materialCodeArrayList.add(resultArraylist.get(i).get("code"));
+        }
+
+        arrayMaterialNameAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, materialNameArrayList);
+        arrayMaterialCodeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, materialCodeArrayList);
+
+        materialNameListView.setAdapter(arrayMaterialNameAdapter);
+        materialCodeListView.setAdapter(arrayMaterialCodeAdapter);
     }
 }
