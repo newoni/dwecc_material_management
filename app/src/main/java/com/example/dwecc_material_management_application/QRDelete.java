@@ -12,14 +12,15 @@ import com.example.dwecc_material_management_application.service.PostService;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class QRInsert extends AppCompatActivity {
+public class QRDelete extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_qrdelete);
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setOrientationLocked(false);
-        integrator.setPrompt("입고할 자재 QR을 입력하세요");     // 옆에 뜨는 문구를 바꿀 수 있다.
+        integrator.setPrompt("출고할 자재 QR을 입력하세요");     // 옆에 뜨는 문구를 바꿀 수 있다.
         integrator.initiateScan();
     }
 
@@ -34,7 +35,7 @@ public class QRInsert extends AppCompatActivity {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
                 // todo
-                Log.i("QRInsert, result.getContents", result.getContents());
+                Log.i("QRDelete, result.getContents", result.getContents());
                 String scannedString = result.getContents();
                 String code = result.getContents().split(",")[0];
                 String qty = result.getContents().split(",")[1];
@@ -43,11 +44,11 @@ public class QRInsert extends AppCompatActivity {
                 String lot = last.substring(0,last.length()-3);
                 String seq = last.substring(last.length()-3, last.length());
 
-                Log.i("QRInsert, scannedString", scannedString);
-                Log.i("QRInsert, code", code);
-                Log.i("QRInsert, seq", seq);
-                Log.i("QRInsert, lot", lot);
-                Log.i("QRInsert, qty", qty);
+                Log.i("QRDelete, scannedString", scannedString);
+                Log.i("QRDelete, code", code);
+                Log.i("QRDelete, seq", seq);
+                Log.i("QRDelete, lot", lot);
+                Log.i("QRDelete, qty", qty);
 
                 MaterialRequest materialRequest = new MaterialRequest();
                 materialRequest.setCode(code);
@@ -61,7 +62,7 @@ public class QRInsert extends AppCompatActivity {
                 Log.i("QRInsert, materialRequest.getQty", ""+materialRequest.getQty());
 
                 PostService postService = new PostService();
-                postService.post4material(MainActivity.URL+"/material/create",materialRequest);
+                postService.post4material(MainActivity.URL+"/material/delete",materialRequest);
 
                 //다시 scanenr 실행
                 IntentIntegrator integrator = new IntentIntegrator(this);

@@ -9,8 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.example.dwecc_material_management_application.model.BomSearchRequest;
-import com.example.dwecc_material_management_application.model.Product;
+import com.example.dwecc_material_management_application.model.request.BomSearchRequest;
 import com.example.dwecc_material_management_application.service.PostService;
 import com.example.dwecc_material_management_application.service.TransService;
 

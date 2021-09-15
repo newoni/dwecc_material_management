@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 public class MainActivity extends AppCompatActivity {
-    static public String URL = "http://192.168.205.245:8081";
+    static public String URL = "http://192.168.249.245:8081";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QRInsert.class);
+                startActivity(intent);
+            }
+        });
+
+        button_deleteMaterial2DB.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRDelete.class);
                 startActivity(intent);
             }
         });

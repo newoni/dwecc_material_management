@@ -1,4 +1,4 @@
-package com.example.dwecc_material_management_application.model;
+package com.example.dwecc_material_management_application.model.request;
 
 public class MaterialRequest {
     private String code;

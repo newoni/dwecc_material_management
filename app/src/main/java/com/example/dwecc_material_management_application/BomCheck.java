@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.dwecc_material_management_application.model.BomSearchRequest;
+import com.example.dwecc_material_management_application.model.request.BomSearchRequest;
 import com.example.dwecc_material_management_application.model.Product;
 import com.example.dwecc_material_management_application.service.PostService;
 import com.example.dwecc_material_management_application.service.TransService;
