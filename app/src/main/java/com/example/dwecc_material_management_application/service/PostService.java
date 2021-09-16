@@ -17,11 +17,13 @@ public class PostService {
         public String result = "";
 //    public static String POST(String url, Product product){
     public String post4bom(String url, BomSearchRequest bomSearchRequest){ // --check. new class test <21.09.07>
-
+        Log.i("PostService, post4bom", "post4bom method is started");
         try {
             URL urlCon = new URL(url);
             Log.i("URL is", urlCon.toString());
             HttpURLConnection httpCon = (HttpURLConnection)urlCon.openConnection();
+
+            Log.i("PostService, post4bom httpCon value is", httpCon.toString());
 
             httpCon.setRequestMethod("POST");
 
@@ -34,6 +36,7 @@ public class PostService {
             jsonObject.accumulate("model", bomSearchRequest.getModel()); //--check. new class test <21.09.07>
             jsonObject.accumulate("spec", bomSearchRequest.getSpec()); //--check. new class test <21.09.07>
 
+            Log.i("PostService, post4bom jsonObejct product", jsonObject.getString("product"));
 
             // convert JSONObject to JSON to String
             json = jsonObject.toString();
@@ -86,11 +89,11 @@ public class PostService {
                 httpCon.disconnect();
             }
         }catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }catch (Exception e) {
             Log.i("trying2set_inputstream", "exception occured2");
 //            Log.d("InputStream", e.getLocalizedMessage());
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
         Log.i("result", result); //결과 출력

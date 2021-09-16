@@ -17,9 +17,6 @@
             android:name=".MaterialCheckList"
             android:exported="true" />
         <activity
-            android:name=".MaterialStatus"
-            android:exported="true" />
-        <activity
             android:name=".QRDelete"
             android:exported="true" />
         <activity
