@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,18 +18,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MaterialCheckList extends AppCompatActivity {
+    //      id값에 따른 component들을 변수로 생성
+    ImageButton backButton;
+    ListView innerNameListView;
+    ListView innerCodeListView;
+    ListView innerQtyListview;
 
-
+    //        arrayAdapter 생성
+    ArrayAdapter<String> arrayNameAdapter;
+    ArrayAdapter<String> arrayCodeAdapter;
+    ArrayAdapter<String> arrayQtyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_check_list);
 
-//      id값에 따른 component들을 변수로 생성
-        ImageButton backButton = (ImageButton) findViewById(R.id.backToMain);
-        ListView lineMaterialListView = (ListView) findViewById(R.id.lineMaterialListView);
-        RecyclerView lineMaterialComponentRecyclerView = (RecyclerView) findViewById(R.id.lineMaterialComponentRecyclerView);
+        //      id값에 따른 component들을 변수로 생성
+        backButton = (ImageButton) findViewById(R.id.backToMainInMaterialCheckList);
+        innerNameListView = (ListView) findViewById(R.id.innerNameListView);
+        innerCodeListView = (ListView) findViewById(R.id.innerCodeListView);
+        innerQtyListview = (ListView) findViewById(R.id.innerQtyListview);
 
 //      각 버튼에 onClick listener setting
 //      뒤로가기 버튼 onClick listener setting
@@ -43,10 +53,33 @@ public class MaterialCheckList extends AppCompatActivity {
         String searchResult = getIntent().getStringExtra("materials");
 
         ArrayList<HashMap<String,String>> searchResultArrayList = new ArrayList<HashMap<String,String>>();
-        searchResultArrayList = TransService.chagneString2LineMaterial()
+
+        Log.i("materialCheckList, searchResult: ",searchResult);
+
+        searchResultArrayList = TransService.chagneString2LineMaterial(searchResult);
+
+//      결과 출력용 arrayList 생성(name, code, qty)
+        ArrayList<String> nameArrayList = new ArrayList<String>();
+        ArrayList<String> codeArrayList = new ArrayList<String>();
+        ArrayList<String> qtyArrayList = new ArrayList<String>();
+
+//        arrayList에 결과값 대입
+        for(int i=0; i<searchResultArrayList.size();i++){
+            nameArrayList.add(searchResultArrayList.get(i).get("name"));
+            codeArrayList.add(searchResultArrayList.get(i).get("code"));
+            qtyArrayList.add(searchResultArrayList.get(i).get("qty"));
+        }
+
+
+//      결과 출력 연결용 arrayAdapter 생성
+        arrayNameAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nameArrayList);
+        arrayCodeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, codeArrayList);
+        arrayQtyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, qtyArrayList);
+
 
 //      검색 결과 ArrayAdapter 연결
-
-
+        innerNameListView.setAdapter(arrayNameAdapter);
+        innerCodeListView.setAdapter(arrayCodeAdapter);
+        innerQtyListview.setAdapter(arrayQtyAdapter);
     }
 }

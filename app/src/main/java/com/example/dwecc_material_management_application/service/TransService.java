@@ -104,18 +104,36 @@ public class TransService {
             HashMap<String, String> materialHashMap = new HashMap<String, String>();
             Log.i("TransService, material ", material);
 
+            //자재명 정보 추출 및 저장
+            String materialName = material.split(",")[0].split(":")[1];
+            Log.i("TransService, materialName ", materialName);
+            materialHashMap.put("name",materialName.substring(materialName.indexOf('"')+1,materialName.lastIndexOf('"')));
+
             //자재 코드 정보 추출 및 저장
             String materialCode = material.split(",")[1].split(":")[1];
             Log.i("TransService, materialCode ", materialCode);
             materialHashMap.put("code",materialCode.substring(materialCode.indexOf('"')+1,materialCode.lastIndexOf('"')));
 
-            //자재명 정보 추출 및 저장
-            String materialName = material.split(",")[2].split(":")[1];
-            Log.i("TransService, materialName ", materialName);
-            materialHashMap.put("name",materialName.substring(materialName.indexOf('"')+1,materialName.lastIndexOf('"')));
+            //LOT 정보 추출 및 저장
+            String materialLot = material.split(",")[2].split(":")[1];
+            Log.i("TransService, materialLot ", materialLot);
+            materialHashMap.put("lot",materialLot);
+
+            //SEQUENCE 정보 추출 및 저장
+            String materialSeq = material.split(",")[3].split(":")[1];
+            Log.i("TransService, materialSeq ", materialSeq);
+            materialHashMap.put("seq",materialSeq);
+
+            //QTY 정보 추출 및 저장
+            String materialQty = material.split(",")[4].split(":")[1];
+            Log.i("TransService, materialQty ", materialQty);
+            materialHashMap.put("qty",materialQty);
 
             Log.i("transService, materialHashMap.get(name)",materialHashMap.get("name"));
             Log.i("transService, materialHashMap.get(code)",materialHashMap.get("code"));
+            Log.i("transService, materialHashMap.get(lot)",materialHashMap.get("lot"));
+            Log.i("transService, materialHashMap.get(seq)",materialHashMap.get("seq"));
+            Log.i("transService, materialHashMap.get(qty)",materialHashMap.get("qty"));
 
             resultArrayList.add(materialHashMap);
         }
