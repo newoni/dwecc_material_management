@@ -56,7 +56,7 @@ public class BomCheck extends AppCompatActivity {
 //                product.setSearchString(sendMessage);
                 bomSearchRequest.setProduct(sendMessage);  //--check. new address test <21.09.07>
 
-//                URL 설정 --check. URL 설정 필요, POST 사용 가능한지 확인해보기
+//                URL 설정
                 String URL = MainActivity.URL + "/bomSearch/product"; //--check. new address test <21.09.07>
 
 //                POST 함수 실행

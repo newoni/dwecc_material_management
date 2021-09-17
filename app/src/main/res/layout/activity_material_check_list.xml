@@ -16,9 +16,50 @@
         android:scaleType="fitStart"
         />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="hello world"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="이름">
+
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="코드">
+
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="수량">
+
+        </TextView>
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lineMaterialListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lineMaterialComponentRecyclerView"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </ListView>
 
 </LinearLayout>
