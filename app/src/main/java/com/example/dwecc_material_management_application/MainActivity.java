@@ -12,7 +12,8 @@ import com.example.dwecc_material_management_application.service.PostService;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 public class MainActivity extends AppCompatActivity {
-    static public String URL = "http://10.0.2.2:8081";
+    static public String URL = "http://183.90.137.186:8081";
+//    static public String URL = "http://10.0.2.2:8081";
 
     //                결과값 입력을 위한 변수 선언
     String searchResult;
