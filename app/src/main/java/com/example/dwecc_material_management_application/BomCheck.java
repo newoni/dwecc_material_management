@@ -21,8 +21,6 @@ public class BomCheck extends AppCompatActivity {
 
     String searchResult;
     static ArrayList<Product> resultArray;
-//    static Product product;
-//    static BomSearchRequest bomSearchRequest = new BomSearchRequest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +48,9 @@ public class BomCheck extends AppCompatActivity {
 //                보낼 메세지 값 받아오기
                 String sendMessage = editText.getText().toString();
 
+//                전달 객체 product 생성 및 필드값 채우기
                 BomSearchRequest bomSearchRequest = new BomSearchRequest();
                 System.out.println("BomCheck Class, sendMessage: "+ sendMessage);
-//                전달 객체 product 생성 및 필드값 채우기
-//                product.setSearchString(sendMessage);
                 bomSearchRequest.setProduct(sendMessage);  //--check. new address test <21.09.07>
 
 //                URL 설정
@@ -62,7 +59,6 @@ public class BomCheck extends AppCompatActivity {
 //                POST 함수 실행
 //                thread를 활용해서 실행(메인 스레드에서 실행 시 NetworkOnMainThreadException 발생
 //                source: https://caileb.tistory.com/173
-
                 Thread startThread = new Thread(){
                     @Override
                     public void run() {
@@ -72,23 +68,26 @@ public class BomCheck extends AppCompatActivity {
                         Log.i("BomSearch", "searchResult value is:" +searchResult);
                     }
                 };
-
                 startThread.start();
 
+//                통신 결과 대기
                 try {
                     startThread.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+//                결과값 ArrayList<product> type으로 형변환
                 Log.i("BomCheck, searchResult",searchResult);
                 resultArray = TransService.changeString2Product(searchResult);
 
+//                결과값 출력
                 Log.i("BomCheck, result with searchResult", "resultArray.toString() is");
                 for(int i=0; i<resultArray.size(); i++){
                     System.out.println(resultArray.get(i));
                 }
 
+//                결과값 출력 페이지로 이동
                 Intent intent = new Intent(BomCheck.this, BomCheckResult.class);
                 startActivity(intent);
             }
