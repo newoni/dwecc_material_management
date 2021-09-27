@@ -39,7 +39,7 @@ public class BomCheckMaterialResult extends AppCompatActivity {
 
         ImageButton backButton = (ImageButton)findViewById(R.id.closeBomCheckMaterialResult);
 
-        //      각 버튼에 onClick listener setting
+//      각 버튼에 onClick listener setting
 //      뒤로가기 버튼 onClick listener setting
         backButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -48,10 +48,12 @@ public class BomCheckMaterialResult extends AppCompatActivity {
             }
         });
 
+//        검색받은 데이터를 바탕으로 리스트 출력
         //      리스트 뷰 id 값과 연결
         materialNameListView = (ListView)findViewById(R.id.materialName);
         materialCodeListView = (ListView)findViewById(R.id.materialCode);
 
+//        URL 설정 및 request data 생성
         String URL = MainActivity.URL + "/bomSearch/material";
 
         Log.i("BomCheckMaterialResult, getIntent", ""+getIntent());
@@ -72,7 +74,6 @@ public class BomCheckMaterialResult extends AppCompatActivity {
 //                POST 함수 실행
 //                thread를 활용해서 실행(메인 스레드에서 실행 시 NetworkOnMainThreadException 발생
 //                source: https://caileb.tistory.com/173
-
         Thread startThread = new Thread(){
             @Override
             public void run() {
@@ -82,9 +83,9 @@ public class BomCheckMaterialResult extends AppCompatActivity {
                 Log.i("BomSearch material", "searchResult value is:" +searchResult);
             }
         };
-
         startThread.start();
 
+//        스레드 실행결과 대기
         try {
             startThread.join();
         } catch (InterruptedException e) {
@@ -92,8 +93,11 @@ public class BomCheckMaterialResult extends AppCompatActivity {
         }
 
         Log.i("BomCheck, searchResult",searchResult);
-        ArrayList<HashMap<String,String>> resultArraylist = TransService.chagneString2Material(searchResult);
 
+//        실행 결과값 ArrayList<hashMap<String,String>> type으로 변환
+       ArrayList<HashMap<String,String>> resultArraylist = TransService.chagneString2Material(searchResult);
+
+//       결과 출력용 ArrayList 2개 생성
         ArrayList<String> materialNameArrayList = new ArrayList<String>();
         ArrayList<String> materialCodeArrayList = new ArrayList<String>();
 
@@ -102,6 +106,7 @@ public class BomCheckMaterialResult extends AppCompatActivity {
             materialCodeArrayList.add(resultArraylist.get(i).get("code"));
         }
 
+//        ListView에 연결할 Adapter 2개 생성 연결
         arrayMaterialNameAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, materialNameArrayList);
         arrayMaterialCodeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, materialCodeArrayList);
 
