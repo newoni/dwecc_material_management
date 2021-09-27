@@ -50,12 +50,15 @@ public class MaterialCheckList extends AppCompatActivity {
         });
 
 //      검색 결과 전처리
+//        넘겨줬던 검색 결과 받아오기
         String searchResult = getIntent().getStringExtra("materials");
 
+//        결과로 사용할 arrayList 사용
         ArrayList<HashMap<String,String>> searchResultArrayList = new ArrayList<HashMap<String,String>>();
 
         Log.i("materialCheckList, searchResult: ",searchResult);
 
+//        결과값을 형변환
         searchResultArrayList = TransService.chagneString2LineMaterial(searchResult);
 
 //      결과 출력용 arrayList 생성(name, code, qty)
@@ -63,19 +66,17 @@ public class MaterialCheckList extends AppCompatActivity {
         ArrayList<String> codeArrayList = new ArrayList<String>();
         ArrayList<String> qtyArrayList = new ArrayList<String>();
 
-//        arrayList에 결과값 대입
+//        for을 활용하여 arrayList에 결과값 대입
         for(int i=0; i<searchResultArrayList.size();i++){
             nameArrayList.add(searchResultArrayList.get(i).get("name"));
             codeArrayList.add(searchResultArrayList.get(i).get("code"));
             qtyArrayList.add(searchResultArrayList.get(i).get("qty"));
         }
 
-
 //      결과 출력 연결용 arrayAdapter 생성
         arrayNameAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nameArrayList);
         arrayCodeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, codeArrayList);
         arrayQtyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, qtyArrayList);
-
 
 //      검색 결과 ArrayAdapter 연결
         innerNameListView.setAdapter(arrayNameAdapter);
