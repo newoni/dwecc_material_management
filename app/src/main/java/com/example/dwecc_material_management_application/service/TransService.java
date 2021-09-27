@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TransService {
+/*
+    description: BomCheck에서 호출. 모델명 검색 결과 product list를 출력 전 전처리
+    input: (String) 서버 요청 후 결과 데이터
+    output: (ArrayList<Product>) 요청 후 해당하는 product를 포함하는 ArrayList
+*/
     public static ArrayList<Product> changeString2Product(String input){
 
         ArrayList<Product> result = new ArrayList<Product>();
@@ -60,6 +65,12 @@ public class TransService {
         return result;
     }
 
+/*
+    description: BomCheckMaterialResult에서 호출. 모델 검색 결과 material data를 출력 전 전처리
+    input: (String) 서버 요청 후 결과 데이터
+    output: (ArrayList<HashMap<String,String>>) 하나의 HashMap은 각각
+    name, code를 Key 값으로 가짐
+ */
     public static ArrayList<HashMap<String,String>> chagneString2Material(String input){
         String subStringedInput = input.substring(input.indexOf('['),input.lastIndexOf(']'));
         String[] strings = subStringedInput.split("\\{");
@@ -91,6 +102,12 @@ public class TransService {
         return resultArrayList;
     }
 
+    /*
+    description: MaterialCheckList에서 호출. 검색 결과 material data를 출력 전 전처리
+    input: (String) 서버 요청 후 결과 데이터
+    output: (ArrayList<HashMap<String,String>>) 하나의 HashMap은 각각
+    code, lot, qty, seq 의 Key를 갖는다
+     */
     public static ArrayList<HashMap<String,String>> chagneString2LineMaterial(String input){
         String subStringedInput = input.substring(input.indexOf('['),input.lastIndexOf(']'));
         String[] strings = subStringedInput.split("\\{");
