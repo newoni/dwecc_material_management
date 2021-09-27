@@ -15,7 +15,12 @@ public class PostService {
 
         public InputStream is = null;
         public String result = "";
-//    public static String POST(String url, Product product){
+
+/*
+description: BOM 확인 기능. (
+input: (String) url, (BomSearchRequest) product, model, spec 이 들어감.
+output: (String), BomCheckResult 에서 호출될 경우, 제품 리스트. BomCheckMaterialResult 에서 호출될 경우 자재 리스트 출력
+*/
     public String post4bom(String url, BomSearchRequest bomSearchRequest){ // --check. new class test <21.09.07>
         Log.i("PostService, post4bom", "post4bom method is started");
         try {
@@ -100,6 +105,11 @@ public class PostService {
         return result;
     }
 
+/*
+    description: QR code data 송신, url에 따라 server가 다르게 동작할 것
+    input: (String) url, (MaterialRequest) code, lot, seq, qty
+    output: (String), 아마 없을 듯.
+ */
     public String post4material(String url, MaterialRequest request){
         try {
             URL urlCon = new URL(url);
@@ -181,6 +191,11 @@ public class PostService {
         return result;
     }
 
+/*
+    description: 모든 자재 정보 요청 method
+    input: (String) url
+    output: (String) 자재 정보 리스트
+ */
     public String post4readAllMaterial(String url){
         try {
             URL urlCon = new URL(url);
@@ -206,7 +221,6 @@ public class PostService {
             Log.i("PostSerice,set_output_stream", "setting output stream");
             OutputStream os = httpCon.getOutputStream();
 
-            //--check. 바로 윗줄에서 연결 문제 일어남.
             Log.i("test", "maybe this sentence will not be runned");
 //            os.write(json.getBytes("euc-kr"));
             os.flush();
@@ -243,6 +257,7 @@ public class PostService {
         Log.i("result", result); //결과 출력
         return result;
     }
+
 //    출처: https://unikys.tistory.com/196 [All-round programmer]
     //받아온 결과값을 String type으로 받아옴
     private static String convertStreamToString(InputStream is){
