@@ -151,7 +151,12 @@ output: (String), BomCheckResult 에서 호출될 경우, 제품 리스트. BomC
             Log.i("PostSerice,set_output_stream", "setting output stream");
             OutputStream os = httpCon.getOutputStream();
 
-            //--check. 바로 윗줄에서 연결 문제 일어남.
+            /*
+            --check. 바로 윗줄에서 연결 문제 일어남.<21.09.30>
+            (HTTPLog)-Static: isSBSettingEnabled false 가 일어났었음. 
+            thread 활용해서 수행해보기
+            -> 메인스레드에서 너무 많은 작업 수행중
+             */
             Log.i("test", "maybe this sentence will not be runned");
             Log.i("before_os_write","before os.wrtie, json value: " + json);
 //            os.write(json.getBytes("euc-kr"));
@@ -180,11 +185,11 @@ output: (String), BomCheckResult 에서 호출될 경우, 제품 리스트. BomC
                 httpCon.disconnect();
             }
         }catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }catch (Exception e) {
             Log.i("trying2set_inputstream", "exception occured2");
 //            Log.d("InputStream", e.getLocalizedMessage());
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
         Log.i("result", result); //결과 출력

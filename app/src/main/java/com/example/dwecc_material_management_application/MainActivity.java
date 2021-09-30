@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        각각의 버튼에 OnClickListener 연결
 //        button_bomCheck에 OnClickListener 연결
-        button_bomCheck.setOnClickListener(new View.OnClickListener() { // 클릭리스터 생성
+        button_bomCheck.setOnClickListener(new View.OnClickListener() { // 클릭리스너 생성
             @Override // 부모 메소드 재정의
             public void onClick(View v) { // 클릭 이벤트 처리
                 Intent intent = new Intent(MainActivity.this, BomCheck.class);
