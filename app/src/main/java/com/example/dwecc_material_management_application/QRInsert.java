@@ -29,9 +29,6 @@ public class QRInsert extends AppCompatActivity {
         editText = findViewById(R.id.qrDataEditText);
         sendButton = findViewById(R.id.qrDataButton);
 
-        System.out.println(editText);
-        System.out.println(sendButton);
-
         if(sendButton == null) {
             Log.i("QRInsert, sendButton Test", "sendButton is null");
         }else{
@@ -106,9 +103,33 @@ public class QRInsert extends AppCompatActivity {
                 Log.i("QRInsert, result.getContents", result.getContents());
                 String scannedString = result.getContents();
 
-                editText.setText(scannedString);
-                sendButton.callOnClick();
+//                --check. 21.10.01 수정 시작 part
+                String code = result.getContents().split(",")[0];
+                String qty = result.getContents().split(",")[1];
 
+                String last = result.getContents().split(",")[2];
+                String lot = last.substring(0,last.length()-3);
+                String seq = last.substring(last.length()-3, last.length());
+
+                Log.i("QRDelete, scannedString", scannedString);
+                Log.i("QRDelete, code", code);
+                Log.i("QRDelete, seq", seq);
+                Log.i("QRDelete, lot", lot);
+                Log.i("QRDelete, qty", qty);
+
+                MaterialRequest materialRequest = new MaterialRequest();
+                materialRequest.setCode(code);
+                materialRequest.setLot(lot);
+                materialRequest.setSeq(Long.parseLong(seq));
+                materialRequest.setQty(Long.parseLong(qty));
+
+                Log.i("QRInsert, materialRequest.getCode", materialRequest.getCode());
+                Log.i("QRInsert, materialRequest.getSeq", ""+materialRequest.getSeq());
+                Log.i("QRInsert, materialRequest.getLot", materialRequest.getLot());
+                Log.i("QRInsert, materialRequest.getQty", ""+materialRequest.getQty());
+
+                PostService postService = new PostService();
+                postService.post4material(MainActivity.URL+"/material/delete",materialRequest);
 
                 //다시 scanenr 실행
                 IntentIntegrator integrator = new IntentIntegrator(this);
